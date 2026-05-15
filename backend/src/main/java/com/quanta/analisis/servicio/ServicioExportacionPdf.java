@@ -103,8 +103,6 @@ public class ServicioExportacionPdf {
     // ── Sección 1: Portada ────────────────────────────────────────────────────────
 
     private void agregarPortada(Document doc) throws DocumentException {
-        Font fInstitucion = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11, Color.DARK_GRAY);
-        Font fPrograma    = FontFactory.getFont(FontFactory.HELVETICA, 10, Color.GRAY);
         Font fTitulo      = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 36, COLOR_PRIMARIO);
         Font fSlogan      = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 11, new Color(120, 120, 160));
         Font fSubt        = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14, Color.DARK_GRAY);
@@ -113,21 +111,7 @@ public class ServicioExportacionPdf {
         Font fFecha       = FontFactory.getFont(FontFactory.HELVETICA, 9, Color.GRAY);
         Font fBadge       = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 8, Color.WHITE);
 
-        // ── Encabezado institucional ──────────────────────────────────────────────
-        doc.add(new Paragraph("\n"));
-
-        Paragraph pInstitucion = new Paragraph("INSTITUCIÓN UNIVERSITARIA PASCUAL BRAVO", fInstitucion);
-        pInstitucion.setAlignment(Element.ALIGN_CENTER);
-        doc.add(pInstitucion);
-
-        Paragraph pPrograma = new Paragraph("Ingeniería en Sistemas · Análisis Algorítmico Financiero", fPrograma);
-        pPrograma.setAlignment(Element.ALIGN_CENTER);
-        pPrograma.setSpacingBefore(2);
-        doc.add(pPrograma);
-
-        doc.add(new Paragraph("\n\n\n"));
-        agregarLinea(doc, new Color(200, 200, 220));
-        doc.add(new Paragraph("\n"));
+        doc.add(new Paragraph("\n\n\n\n"));
 
         // ── Logo / nombre de la plataforma ────────────────────────────────────────
         Paragraph titulo = new Paragraph("QUANTA", fTitulo);
