@@ -1,4 +1,4 @@
-# Quanta · Algorithmic Market Lab
+# Quanta · Mercado Algoritmico
 
 **Plataforma de análisis algorítmico de series financieras** para un portafolio de 20 activos: acciones de la BVC (Bolsa de Valores de Colombia), ETFs e índices globales de EE.UU.
 
