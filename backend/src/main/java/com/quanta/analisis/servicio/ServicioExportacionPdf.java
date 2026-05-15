@@ -103,42 +103,64 @@ public class ServicioExportacionPdf {
     // ── Sección 1: Portada ────────────────────────────────────────────────────────
 
     private void agregarPortada(Document doc) throws DocumentException {
-        Font fTitulo  = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 28, COLOR_PRIMARIO);
-        Font fSubt    = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14, Color.DARK_GRAY);
-        Font fFecha   = FontFactory.getFont(FontFactory.HELVETICA, 10, Color.GRAY);
-        Font fBadge   = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 9, Color.WHITE);
+        Font fInstitucion = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11, Color.DARK_GRAY);
+        Font fPrograma    = FontFactory.getFont(FontFactory.HELVETICA, 10, Color.GRAY);
+        Font fTitulo      = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 36, COLOR_PRIMARIO);
+        Font fSlogan      = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 11, new Color(120, 120, 160));
+        Font fSubt        = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14, Color.DARK_GRAY);
+        Font fSeccion     = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 9, Color.GRAY);
+        Font fAutor       = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, new Color(40, 40, 80));
+        Font fFecha       = FontFactory.getFont(FontFactory.HELVETICA, 9, Color.GRAY);
+        Font fBadge       = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 8, Color.WHITE);
 
-        // Separador decorativo superior
-        doc.add(new Paragraph("\n\n"));
+        // ── Encabezado institucional ──────────────────────────────────────────────
+        doc.add(new Paragraph("\n"));
 
+        Paragraph pInstitucion = new Paragraph("INSTITUCIÓN UNIVERSITARIA PASCUAL BRAVO", fInstitucion);
+        pInstitucion.setAlignment(Element.ALIGN_CENTER);
+        doc.add(pInstitucion);
+
+        Paragraph pPrograma = new Paragraph("Ingeniería en Sistemas · Análisis Algorítmico Financiero", fPrograma);
+        pPrograma.setAlignment(Element.ALIGN_CENTER);
+        pPrograma.setSpacingBefore(2);
+        doc.add(pPrograma);
+
+        doc.add(new Paragraph("\n\n\n"));
+        agregarLinea(doc, new Color(200, 200, 220));
+        doc.add(new Paragraph("\n"));
+
+        // ── Logo / nombre de la plataforma ────────────────────────────────────────
         Paragraph titulo = new Paragraph("QUANTA", fTitulo);
         titulo.setAlignment(Element.ALIGN_CENTER);
         doc.add(titulo);
 
-        Paragraph subtitulo = new Paragraph("Reporte de Análisis Algorítmico Financiero", fSubt);
-        subtitulo.setAlignment(Element.ALIGN_CENTER);
-        subtitulo.setSpacingBefore(4);
-        doc.add(subtitulo);
-
-        Paragraph empresa = new Paragraph("Quanta · Algorithmic Market Lab", fFecha);
-        empresa.setAlignment(Element.ALIGN_CENTER);
-        empresa.setSpacingBefore(6);
-        doc.add(empresa);
-
-        Paragraph fecha = new Paragraph(
-                "Generado: " + LocalDateTime.now().format(
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")), fFecha);
-        fecha.setAlignment(Element.ALIGN_CENTER);
-        doc.add(fecha);
+        Paragraph slogan = new Paragraph("Algorithmic Market Lab", fSlogan);
+        slogan.setAlignment(Element.ALIGN_CENTER);
+        slogan.setSpacingBefore(2);
+        doc.add(slogan);
 
         doc.add(new Paragraph("\n"));
         agregarLinea(doc, COLOR_PRIMARIO);
         doc.add(new Paragraph("\n"));
 
-        // Tabla de métricas destacadas
+        // ── Título del reporte ────────────────────────────────────────────────────
+        Paragraph subtitulo = new Paragraph("Reporte de Análisis Algorítmico Financiero", fSubt);
+        subtitulo.setAlignment(Element.ALIGN_CENTER);
+        subtitulo.setSpacingBefore(4);
+        doc.add(subtitulo);
+
+        Paragraph descripcion = new Paragraph(
+                "Pipeline ETL · Similitud entre Series · Riesgo y Volatilidad · Benchmarks de Ordenamiento", fFecha);
+        descripcion.setAlignment(Element.ALIGN_CENTER);
+        descripcion.setSpacingBefore(4);
+        doc.add(descripcion);
+
+        doc.add(new Paragraph("\n\n"));
+
+        // ── KPIs del portafolio ───────────────────────────────────────────────────
         PdfPTable kpis = new PdfPTable(4);
         kpis.setWidthPercentage(90);
-        kpis.setSpacingBefore(12);
+        kpis.setSpacingBefore(4);
 
         List<DtoActivo> activos = servicioActivos.obtenerTodosActivos();
         DtoEstadoEtl etl = servicioEtl.obtenerEstado();
@@ -149,9 +171,56 @@ public class ServicioExportacionPdf {
         agregarKpi(kpis, "HORIZONTE", "~5 años", "datos históricos diarios");
         doc.add(kpis);
 
-        // Badge "Datos reales"
+        doc.add(new Paragraph("\n\n"));
+        agregarLinea(doc, new Color(200, 200, 220));
         doc.add(new Paragraph("\n"));
-        Paragraph badge = new Paragraph("  ● Yahoo Finance API  ● 4 algoritmos de similitud  ● Exportación PDF  ", fBadge);
+
+        // ── Autores ───────────────────────────────────────────────────────────────
+        Paragraph pSeccionAutores = new Paragraph("INTEGRANTES DEL PROYECTO", fSeccion);
+        pSeccionAutores.setAlignment(Element.ALIGN_CENTER);
+        doc.add(pSeccionAutores);
+        doc.add(new Paragraph("\n"));
+
+        String[] autores = {
+            "Luis Alberto Torres",
+            "Jhon Stivenson Méndez",
+            "Robinson Gañan"
+        };
+
+        PdfPTable tablaAutores = new PdfPTable(1);
+        tablaAutores.setWidthPercentage(60);
+        tablaAutores.setHorizontalAlignment(Element.ALIGN_CENTER);
+        tablaAutores.setSpacingBefore(4);
+
+        for (String autor : autores) {
+            PdfPCell celda = new PdfPCell(new Phrase(autor, fAutor));
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            celda.setPadding(8);
+            celda.setBorder(Rectangle.BOX);
+            celda.setBorderColor(new Color(200, 200, 220));
+            celda.setBackgroundColor(COLOR_FILA_PAR);
+            tablaAutores.addCell(celda);
+        }
+        doc.add(tablaAutores);
+
+        doc.add(new Paragraph("\n\n"));
+        agregarLinea(doc, new Color(200, 200, 220));
+        doc.add(new Paragraph("\n"));
+
+        // ── Fecha de generación ───────────────────────────────────────────────────
+        Paragraph fecha = new Paragraph(
+                "Generado el " + LocalDateTime.now().format(
+                        DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy 'a las' HH:mm",
+                                java.util.Locale.forLanguageTag("es"))), fFecha);
+        fecha.setAlignment(Element.ALIGN_CENTER);
+        doc.add(fecha);
+
+        doc.add(new Paragraph("\n"));
+
+        // Badge de tecnologías
+        Paragraph badge = new Paragraph(
+                "  ● Yahoo Finance API  ● React 19 · Spring Boot 3  ● OpenPDF  ● JWT  ", fBadge);
         badge.setAlignment(Element.ALIGN_CENTER);
         doc.add(badge);
 
