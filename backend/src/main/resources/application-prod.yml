@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+logging:
+  level:
+    com.quanta: INFO
+    root: WARN
+
+quanta:
+  cors:
+    allowed-origins:
+      - https://quanta.analisis.com

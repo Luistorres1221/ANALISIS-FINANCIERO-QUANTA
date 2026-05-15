@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: quanta-analisis-financiero
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 1024
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+  info:
+    env:
+      enabled: true
+
+quanta:
+  jwt:
+    secret: QuantaLtdaAlgorithmicMarketLabSecretKey2024!XYZ#AbCdEfGhIj
+    expiration: 86400000   # 24 horas en ms
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:8081,http://localhost:3000
+
+info:
+  app:
+    name: Quanta · Algorithmic Market Lab
+    version: 1.0.0
+    description: API de análisis algorítmico de series temporales financieras
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+  info:
+    title: Quanta Financial Analysis API
+    description: |
+      REST API para análisis algorítmico de series temporales financieras.
+      Implementa: ETL pipeline, similitud (Pearson, Coseno, Euclidiana, DTW),
+      volatilidad, CAGR, detección de patrones y matriz de correlación.
+    version: 1.0.0
+    contact:
+      name: Quanta · Algorithmic Market Lab
