@@ -118,7 +118,7 @@ public class ServicioExportacionPdf {
         titulo.setAlignment(Element.ALIGN_CENTER);
         doc.add(titulo);
 
-        Paragraph slogan = new Paragraph("Algorithmic Market Lab", fSlogan);
+        Paragraph slogan = new Paragraph("Mercado Algoritmico", fSlogan);
         slogan.setAlignment(Element.ALIGN_CENTER);
         slogan.setSpacingBefore(2);
         doc.add(slogan);
