@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { isAuthenticated, getUser, removeToken, type AuthUser } from "@/lib/auth";
 import { AuthContext } from "@/lib/auth-context";
 import { LoginPage } from "@/componentes/autenticacion/LoginPage";
+import { AppFooter } from "@/componentes/panel/AppFooter";
 
 function NotFoundComponent() {
   return (
@@ -134,6 +135,7 @@ function RootComponent() {
     <AuthContext.Provider value={{ user, logout }}>
       <QueryClientProvider client={queryClient}>
         <Outlet />
+        <AppFooter />
       </QueryClientProvider>
     </AuthContext.Provider>
   );
