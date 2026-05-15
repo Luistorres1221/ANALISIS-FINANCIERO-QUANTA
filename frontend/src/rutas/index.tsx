@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
-import { Database, GitCompareArrows, Waves, Sparkles, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { AppHeader } from "@/componentes/panel/AppHeader";
 import { StatCard } from "@/componentes/panel/Primitives";
 import { ASSETS, ASSET_MAP, returns, annualVol, fmt } from "@/lib/finance-data";
@@ -55,21 +55,6 @@ function Resumen() {
                 deslizante, clasificación de riesgo y dashboard bursátil — todo construido sobre algoritmos
                 clásicos implementados de forma explícita, sin librerías de alto nivel.
               </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {[
-                  { icon: Database,         t: "ETL HTTP nativo" },
-                  { icon: GitCompareArrows, t: "Pearson · Coseno · Euclidiana · DTW" },
-                  { icon: Waves,            t: "σ anualizada + sliding window" },
-                  { icon: Sparkles,         t: "Heatmap + Candlestick + SMA" },
-                ].map(({ icon: I, t }) => (
-                  <span
-                    key={t}
-                    className="inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-sm border border-border bg-card/50"
-                  >
-                    <I className="size-3 text-primary" /> {t}
-                  </span>
-                ))}
-              </div>
             </div>
 
             {/* Mini portafolio */}

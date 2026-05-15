@@ -1,4 +1,4 @@
-import { Github, Mail, TrendingUp } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 const AÑO = new Date().getFullYear();
 
@@ -11,16 +11,6 @@ const NAV_FOOTER = [
   { label: "Ordenamiento", href: "/ordenamiento" },
 ];
 
-const ALGORITMOS = [
-  "Pearson Correlation",
-  "Cosine Similarity",
-  "Dynamic Time Warping",
-  "Euclidean Distance",
-  "SMA 20 / SMA 50",
-  "Value at Risk (VaR)",
-  "Max Drawdown",
-  "Sharpe Ratio",
-];
 
 export function AppFooter() {
   return (
@@ -87,18 +77,6 @@ export function AppFooter() {
             </ul>
           </div>
 
-          {/* Algoritmos */}
-          <div>
-            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60 mb-3 flex items-center gap-1.5">
-              <TrendingUp className="size-3" />
-              Algoritmos implementados
-            </div>
-            <ul className="space-y-1.5">
-              {ALGORITMOS.map(a => (
-                <li key={a} className="text-xs font-mono text-muted-foreground">{a}</li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Divider */}
