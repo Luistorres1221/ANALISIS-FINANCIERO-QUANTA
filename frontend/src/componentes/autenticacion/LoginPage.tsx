@@ -137,9 +137,6 @@ export function LoginPage({ onSuccess }: Props) {
               </Field>
               {error && <ErrorMsg msg={error} />}
               <SubmitBtn loading={loading} label="Iniciar Sesión" loadingLabel="Verificando..." />
-              <p className="text-center text-[10px] font-mono text-muted-foreground pt-1">
-                //Demo: <span className="text-accent">admin@quanta.com</span> / <span className="text-accent">quanta123</span>
-              </p>
             </form>
           )}
 
