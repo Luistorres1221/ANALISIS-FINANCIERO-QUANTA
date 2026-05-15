@@ -12,3 +12,4 @@ quanta:
   cors:
     allowed-origins:
       - https://quanta.analisis.com
+      - https://analisis-financiero-quanta.vercel.app

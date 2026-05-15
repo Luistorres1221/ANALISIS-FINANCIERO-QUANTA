@@ -95,7 +95,7 @@ export function LoginPage({ onSuccess }: Props) {
             QUANTA <span className="text-primary">LTDA</span>
           </h1>
           <p className="text-[11px] font-mono uppercase tracking-[0.3em] text-accent mt-1.5">
-            Algorithmic Market Lab
+            Mercado Algoritmico
           </p>
           <div className="flex items-center justify-center gap-2 mt-3">
             <span className="size-1.5 rounded-full bg-bull pulse-dot" />
@@ -138,7 +138,7 @@ export function LoginPage({ onSuccess }: Props) {
               {error && <ErrorMsg msg={error} />}
               <SubmitBtn loading={loading} label="Iniciar Sesión" loadingLabel="Verificando..." />
               <p className="text-center text-[10px] font-mono text-muted-foreground pt-1">
-                Demo: <span className="text-accent">admin@quanta.com</span> / <span className="text-accent">quanta123</span>
+                //Demo: <span className="text-accent">admin@quanta.com</span> / <span className="text-accent">quanta123</span>
               </p>
             </form>
           )}

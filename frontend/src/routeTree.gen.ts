@@ -8,115 +8,102 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport }    from './rutas/__root'
-import { Route as IndexRouteImport }   from './rutas/index'
-import { Route as EtlRouteImport }     from './rutas/etl'
-import { Route as GraficosRouteImport } from './rutas/graficos'
+import { Route as rootRouteImport } from './rutas/__root'
 import { Route as SimilitudRouteImport } from './rutas/similitud'
-import { Route as RiesgoRouteImport }        from './rutas/riesgo'
+import { Route as RiesgoRouteImport } from './rutas/riesgo'
 import { Route as OrdenamientoRouteImport } from './rutas/ordenamiento'
-
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-const EtlRoute = EtlRouteImport.update({
-  id: '/etl',
-  path: '/etl',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-const GraficosRoute = GraficosRouteImport.update({
-  id: '/graficos',
-  path: '/graficos',
-  getParentRoute: () => rootRouteImport,
-} as any)
+import { Route as GraficosRouteImport } from './rutas/graficos'
+import { Route as EtlRouteImport } from './rutas/etl'
+import { Route as IndexRouteImport } from './rutas/index'
 
 const SimilitudRoute = SimilitudRouteImport.update({
   id: '/similitud',
   path: '/similitud',
   getParentRoute: () => rootRouteImport,
 } as any)
-
 const RiesgoRoute = RiesgoRouteImport.update({
   id: '/riesgo',
   path: '/riesgo',
   getParentRoute: () => rootRouteImport,
 } as any)
-
 const OrdenamientoRoute = OrdenamientoRouteImport.update({
   id: '/ordenamiento',
   path: '/ordenamiento',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GraficosRoute = GraficosRouteImport.update({
+  id: '/graficos',
+  path: '/graficos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EtlRoute = EtlRouteImport.update({
+  id: '/etl',
+  path: '/etl',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/':               typeof IndexRoute
-  '/etl':            typeof EtlRoute
-  '/graficos':       typeof GraficosRoute
-  '/similitud':      typeof SimilitudRoute
-  '/riesgo':         typeof RiesgoRoute
-  '/ordenamiento':   typeof OrdenamientoRoute
+  '/': typeof IndexRoute
+  '/etl': typeof EtlRoute
+  '/graficos': typeof GraficosRoute
+  '/ordenamiento': typeof OrdenamientoRoute
+  '/riesgo': typeof RiesgoRoute
+  '/similitud': typeof SimilitudRoute
 }
 export interface FileRoutesByTo {
-  '/':               typeof IndexRoute
-  '/etl':            typeof EtlRoute
-  '/graficos':       typeof GraficosRoute
-  '/similitud':      typeof SimilitudRoute
-  '/riesgo':         typeof RiesgoRoute
-  '/ordenamiento':   typeof OrdenamientoRoute
+  '/': typeof IndexRoute
+  '/etl': typeof EtlRoute
+  '/graficos': typeof GraficosRoute
+  '/ordenamiento': typeof OrdenamientoRoute
+  '/riesgo': typeof RiesgoRoute
+  '/similitud': typeof SimilitudRoute
 }
 export interface FileRoutesById {
-  __root__:          typeof rootRouteImport
-  '/':               typeof IndexRoute
-  '/etl':            typeof EtlRoute
-  '/graficos':       typeof GraficosRoute
-  '/similitud':      typeof SimilitudRoute
-  '/riesgo':         typeof RiesgoRoute
-  '/ordenamiento':   typeof OrdenamientoRoute
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/etl': typeof EtlRoute
+  '/graficos': typeof GraficosRoute
+  '/ordenamiento': typeof OrdenamientoRoute
+  '/riesgo': typeof RiesgoRoute
+  '/similitud': typeof SimilitudRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/etl' | '/graficos' | '/similitud' | '/riesgo' | '/ordenamiento'
+  fullPaths:
+    | '/'
+    | '/etl'
+    | '/graficos'
+    | '/ordenamiento'
+    | '/riesgo'
+    | '/similitud'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/etl' | '/graficos' | '/similitud' | '/riesgo' | '/ordenamiento'
-  id: '__root__' | '/' | '/etl' | '/graficos' | '/similitud' | '/riesgo' | '/ordenamiento'
+  to: '/' | '/etl' | '/graficos' | '/ordenamiento' | '/riesgo' | '/similitud'
+  id:
+    | '__root__'
+    | '/'
+    | '/etl'
+    | '/graficos'
+    | '/ordenamiento'
+    | '/riesgo'
+    | '/similitud'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute:         typeof IndexRoute
-  EtlRoute:           typeof EtlRoute
-  GraficosRoute:      typeof GraficosRoute
-  SimilitudRoute:     typeof SimilitudRoute
-  RiesgoRoute:        typeof RiesgoRoute
-  OrdenamientoRoute:  typeof OrdenamientoRoute
+  IndexRoute: typeof IndexRoute
+  EtlRoute: typeof EtlRoute
+  GraficosRoute: typeof GraficosRoute
+  OrdenamientoRoute: typeof OrdenamientoRoute
+  RiesgoRoute: typeof RiesgoRoute
+  SimilitudRoute: typeof SimilitudRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/etl': {
-      id: '/etl'
-      path: '/etl'
-      fullPath: '/etl'
-      preLoaderRoute: typeof EtlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/graficos': {
-      id: '/graficos'
-      path: '/graficos'
-      fullPath: '/graficos'
-      preLoaderRoute: typeof GraficosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/similitud': {
       id: '/similitud'
       path: '/similitud'
@@ -138,18 +125,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrdenamientoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/graficos': {
+      id: '/graficos'
+      path: '/graficos'
+      fullPath: '/graficos'
+      preLoaderRoute: typeof GraficosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/etl': {
+      id: '/etl'
+      path: '/etl'
+      fullPath: '/etl'
+      preLoaderRoute: typeof EtlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute,
-  EtlRoute,
-  GraficosRoute,
-  SimilitudRoute,
-  RiesgoRoute,
-  OrdenamientoRoute,
+  IndexRoute: IndexRoute,
+  EtlRoute: EtlRoute,
+  GraficosRoute: GraficosRoute,
+  OrdenamientoRoute: OrdenamientoRoute,
+  RiesgoRoute: RiesgoRoute,
+  SimilitudRoute: SimilitudRoute,
 }
-
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()

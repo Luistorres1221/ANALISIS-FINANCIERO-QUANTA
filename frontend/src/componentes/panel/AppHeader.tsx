@@ -51,7 +51,7 @@ export function AppHeader() {
             <div>
               <div className="text-sm font-bold tracking-tight">QUANTA LTDA</div>
               <div className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground -mt-0.5">
-                Algorithmic Market Lab
+                Mercado Algoritmico
               </div>
             </div>
           </Link>
