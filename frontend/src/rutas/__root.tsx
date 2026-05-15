@@ -1,15 +1,12 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
 import { isAuthenticated, getUser, removeToken, type AuthUser } from "@/lib/auth";
 import { AuthContext } from "@/lib/auth-context";
 import { LoginPage } from "@/componentes/autenticacion/LoginPage";
@@ -70,34 +67,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "QUANTA LTDA · Algorithmic Market Lab" },
-      { name: "description", content: "Plataforma de análisis algorítmico de series financieras: BVC, ETFs e índices globales." },
-    ],
-    links: [{ rel: "stylesheet", href: appCss }],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="es">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -105,7 +78,6 @@ function RootComponent() {
   const [user, setUser]     = useState<AuthUser | null>(null);
   const [ready, setReady]   = useState(false);
 
-  // Verificar token al montar (evita flash)
   useEffect(() => {
     if (isAuthenticated()) {
       setAuthed(true);
@@ -116,7 +88,6 @@ function RootComponent() {
 
   if (!ready) return null;
 
-  // Sin token → pantalla de login
   if (!authed) {
     return (
       <LoginPage

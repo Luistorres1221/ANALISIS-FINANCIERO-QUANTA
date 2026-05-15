@@ -1,7 +1,7 @@
 ﻿const TOKEN_KEY = 'quanta_token';
 const USER_KEY  = 'quanta_user';
 
-export const API_BASE = 'http://localhost:8080/api/v1';
+export const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
 
 export interface AuthUser {
   id:    string;
