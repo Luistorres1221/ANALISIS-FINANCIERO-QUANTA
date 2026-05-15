@@ -568,7 +568,7 @@ export const API_BASE = 'http://localhost:8080/api/v1';
 
 ## Autor
 
-**Luis Torres**  
+**Luis Alberto Torres - Jhon Stivenson Mendez - Roginson Daniel Gañan**  
 GitHub: [@Luistorres1221](https://github.com/Luistorres1221)  
 Correo: pruebapruebatorres@gmail.com  
-Proyecto: Quanta · Algorithmic Market Lab — 2025
+Proyecto: Quanta · Mercado Algoritmico — 2026
