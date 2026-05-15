@@ -111,10 +111,10 @@ public class ServicioExportacionPdf {
         Font fFecha       = FontFactory.getFont(FontFactory.HELVETICA, 9, Color.GRAY);
         Font fBadge       = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 8, Color.WHITE);
 
-        doc.add(new Paragraph("\n\n\n\n"));
+        doc.add(new Paragraph("\n\n\n"));
 
         // ── Logo / nombre de la plataforma ────────────────────────────────────────
-        Paragraph titulo = new Paragraph("QUANTA", fTitulo);
+        Paragraph titulo = new Paragraph("QUANTA LTDA", fTitulo);
         titulo.setAlignment(Element.ALIGN_CENTER);
         doc.add(titulo);
 
@@ -125,6 +125,39 @@ public class ServicioExportacionPdf {
 
         doc.add(new Paragraph("\n"));
         agregarLinea(doc, COLOR_PRIMARIO);
+        doc.add(new Paragraph("\n"));
+
+        // ── Autores (justo debajo del título) ────────────────────────────────────
+        Paragraph pSeccionAutores = new Paragraph("INTEGRANTES DEL PROYECTO", fSeccion);
+        pSeccionAutores.setAlignment(Element.ALIGN_CENTER);
+        doc.add(pSeccionAutores);
+        doc.add(new Paragraph("\n"));
+
+        String[] autores = {
+            "Luis Alberto Torres",
+            "Jhon Stivenson Méndez",
+            "Robinson Gañan"
+        };
+
+        PdfPTable tablaAutores = new PdfPTable(1);
+        tablaAutores.setWidthPercentage(60);
+        tablaAutores.setHorizontalAlignment(Element.ALIGN_CENTER);
+        tablaAutores.setSpacingBefore(4);
+
+        for (String autor : autores) {
+            PdfPCell celda = new PdfPCell(new Phrase(autor, fAutor));
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            celda.setPadding(8);
+            celda.setBorder(Rectangle.BOX);
+            celda.setBorderColor(new Color(200, 200, 220));
+            celda.setBackgroundColor(COLOR_FILA_PAR);
+            tablaAutores.addCell(celda);
+        }
+        doc.add(tablaAutores);
+
+        doc.add(new Paragraph("\n\n"));
+        agregarLinea(doc, new Color(200, 200, 220));
         doc.add(new Paragraph("\n"));
 
         // ── Título del reporte ────────────────────────────────────────────────────
@@ -154,39 +187,6 @@ public class ServicioExportacionPdf {
         agregarKpi(kpis, "YAHOO FINANCE", String.valueOf(etl.getActivosYahooFinance()), "activos con datos reales");
         agregarKpi(kpis, "HORIZONTE", "~5 años", "datos históricos diarios");
         doc.add(kpis);
-
-        doc.add(new Paragraph("\n\n"));
-        agregarLinea(doc, new Color(200, 200, 220));
-        doc.add(new Paragraph("\n"));
-
-        // ── Autores ───────────────────────────────────────────────────────────────
-        Paragraph pSeccionAutores = new Paragraph("INTEGRANTES DEL PROYECTO", fSeccion);
-        pSeccionAutores.setAlignment(Element.ALIGN_CENTER);
-        doc.add(pSeccionAutores);
-        doc.add(new Paragraph("\n"));
-
-        String[] autores = {
-            "Luis Alberto Torres",
-            "Jhon Stivenson Méndez",
-            "Robinson Gañan"
-        };
-
-        PdfPTable tablaAutores = new PdfPTable(1);
-        tablaAutores.setWidthPercentage(60);
-        tablaAutores.setHorizontalAlignment(Element.ALIGN_CENTER);
-        tablaAutores.setSpacingBefore(4);
-
-        for (String autor : autores) {
-            PdfPCell celda = new PdfPCell(new Phrase(autor, fAutor));
-            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
-            celda.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            celda.setPadding(8);
-            celda.setBorder(Rectangle.BOX);
-            celda.setBorderColor(new Color(200, 200, 220));
-            celda.setBackgroundColor(COLOR_FILA_PAR);
-            tablaAutores.addCell(celda);
-        }
-        doc.add(tablaAutores);
 
         doc.add(new Paragraph("\n\n"));
         agregarLinea(doc, new Color(200, 200, 220));
